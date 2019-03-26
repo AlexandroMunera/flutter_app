@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+import 'package:flutter_sparkline/flutter_sparkline.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    /* return MaterialApp(
-        title: 'Startup Name Generator',
-        theme: new ThemeData(
-          primaryColor: Colors.grey[900],
-        ),
-        home: RandomWords()
-    );*/
 
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: <String, WidgetBuilder>{
-        '/signup': (BuildContext context) => InitialPage()
-      },
+//      theme: new ThemeData(
+//        primaryColor: Color(0xFF888888),
+//        backgroundColor: Color(0xFF888888),
+//        color
+//      ),
       home: InitialPage(),
     );
   }
@@ -224,7 +219,11 @@ class _LoginState extends State<Login> {
                         color: Color(0xFFF29C1F),
                         elevation: 7.0,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Dashboard()));
+                          },
                           child: Center(
                             child: Text(
                               'Login',
@@ -260,94 +259,123 @@ class _LoginState extends State<Login> {
   }
 }
 
-class RandomWords extends StatefulWidget {
+class Dashboard extends StatefulWidget {
   @override
-  RandomWordsState createState() => new RandomWordsState();
+  _DashboardState createState() => _DashboardState();
 }
 
-class RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final Set<WordPair> _saved = new Set<WordPair>();
-  final _biggerFont = const TextStyle(fontSize: 18.0);
-
+class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Startup Name Generator'),
-        actions: <Widget>[
-          new IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved),
-        ],
-      ),
-      body: _buildSuggestions(),
-    );
-  }
 
-  Widget _buildSuggestions() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return Divider(); /*2*/
-
-          final index = i ~/ 2; /*3*/
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-          }
-          return _buildRow(_suggestions[index]);
-        });
-  }
-
-  Widget _buildRow(WordPair pair) {
-    final bool alreadySaved = _saved.contains(pair);
-
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
-      ),
-      trailing: new Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
-      ),
-      onTap: () {
-        setState(() {
-          if (alreadySaved) {
-            _saved.remove(pair);
-          } else {
-            _saved.add(pair);
-          }
-        });
-      },
-    );
-  }
-
-  void _pushSaved() {
-    Navigator.of(context).push(
-      new MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          final Iterable<ListTile> tiles = _saved.map(
-            (WordPair pair) {
-              return new ListTile(
-                title: new Text(
-                  pair.asPascalCase,
-                  style: _biggerFont,
-                ),
-              );
-            },
-          );
-          final List<Widget> divided = ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList();
-
-          return new Scaffold(
-            appBar: new AppBar(
-              title: const Text('Saved Suggestions'),
+    final currentRatesView = Container(
+        decoration: BoxDecoration(
+          color: Color(0xFFF9F9F9)
+        ),
+        margin: EdgeInsets.only(top: 18.0),
+      //padding: EdgeInsets.only(top: 18.0, left: 0, right: 0),
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 200.0,
+              width: 380.0,
+              child: Material(
+                borderRadius: BorderRadius.circular(10.0),
+                shadowColor: Colors.blueGrey,
+                color: Colors.white,
+                elevation: 7.0,
+                child: Text("Item 1")
+              ),
             ),
-            body: new ListView(children: divided),
-          );
-        },
+            Container(
+              margin: EdgeInsets.only(top: 20.0),
+              height: 100.0,
+              width: 380.0,
+              child: Material(
+                  borderRadius: BorderRadius.circular(10.0),
+                  shadowColor: Colors.blueGrey,
+                  color: Colors.white,
+                  elevation: 7.0,
+                  child: Text("Item 2")
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20.0),
+              height: 100.0,
+              width: 380.0,
+              child: Material(
+                  borderRadius: BorderRadius.circular(10.0),
+                  shadowColor: Colors.blueGrey,
+                  color: Colors.white,
+                  elevation: 7.0,
+                  child: Text("Item 3")
+              ),
+            ),
+          ],
+        )
+    );
+
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.white,
+      ),
+      home: DefaultTabController(
+        length:2,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+              tabs: [
+                Tab(text: "Current Rates"),
+                Tab(text: "Projections"),
+              ],
+            ),
+            //title: Text('Aqui va el buscador'),
+          ),
+          body: TabBarView(
+            children: [
+              currentRatesView,
+              Text("Projections Items")
+            ],
+          ),
+          bottomNavigationBar: new Theme(
+            data: Theme.of(context).copyWith(
+              // sets the background color of the `BottomNavigationBar`
+                canvasColor: Colors.white,
+                // sets the active color of the `BottomNavigationBar` if `Brightness` is light
+                primaryColor: Colors.orangeAccent,
+                textTheme: Theme
+                    .of(context)
+                    .textTheme
+                    .copyWith(caption: new TextStyle(color: Colors.grey))), // sets the inactive color of the `BottomNavigationBar`
+            child: new BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              currentIndex: 0,
+              items: [
+                new BottomNavigationBarItem(
+                  icon: new Icon(Icons.home),
+                  title: new Text("Home"),
+                ),
+                new BottomNavigationBarItem(
+                  icon: new Icon(Icons.bookmark),
+                  title: new Text("Markets"),
+                ),
+                new BottomNavigationBarItem(
+                  icon: new Icon(Icons.wallpaper),
+                  title: new Text("Wallet"),
+                ),
+                new BottomNavigationBarItem(
+                  icon: new Icon(Icons.tablet),
+                  title: new Text("Trades"),
+                ),
+                new BottomNavigationBarItem(
+                  icon: new Icon(Icons.settings),
+                  title: new Text("Settings"),
+                ),
+              ],
+            ),
+          ),        ),
       ),
     );
   }
 }
+
