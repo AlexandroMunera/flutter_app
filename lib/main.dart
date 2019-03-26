@@ -32,7 +32,7 @@ class InitialPage extends StatefulWidget {
 class _InitialPageState extends State<InitialPage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
         resizeToAvoidBottomPadding: false,
         body: Column(
@@ -47,9 +47,7 @@ class _InitialPageState extends State<InitialPage> {
                         style: TextStyle(
                             fontSize: 30.0,
                             //fontWeight: FontWeight.bold,
-                            fontFamily: 'Gilroy-Bold'
-                        )
-                    ),
+                            fontFamily: 'Gilroy-Bold')),
                   ),
                   Container(
                     padding: EdgeInsets.fromLTRB(40.0, 140.0, 0.0, 0.0),
@@ -57,15 +55,13 @@ class _InitialPageState extends State<InitialPage> {
                         style: TextStyle(
                             fontSize: 30.0,
                             //fontWeight: FontWeight.bold,
-                            fontFamily: 'Gilroy-Bold'
-                        )
-                    ),
+                            fontFamily: 'Gilroy-Bold')),
                   ),
                 ],
               ),
             ),
             Container(
-                width:  400.0,
+                width: 400.0,
                 height: 300.0,
                 decoration: BoxDecoration(
                   image: DecorationImage(
@@ -75,7 +71,6 @@ class _InitialPageState extends State<InitialPage> {
                 padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
                 child: Column(
                   children: <Widget>[
-
                     Container(
                       height: 40.0,
                       child: Material(
@@ -98,46 +93,166 @@ class _InitialPageState extends State<InitialPage> {
                       ),
                     ),
                     SizedBox(height: 20.0),
-                    Container(
-                      height: 40.0,
-                      color: Colors.transparent,
+                    GestureDetector(
                       child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Colors.black,
-                                style: BorderStyle.solid,
-                                width: 1.0),
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(20.0)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Center(
-                              child:
-                                  ImageIcon(AssetImage('assets/facebook.png')),
-                            ),
-                            SizedBox(width: 10.0),
-                            Center(
+                        height: 40.0,
+                        color: Colors.transparent,
+                        child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.black,
+                                    style: BorderStyle.solid,
+                                    width: 1.0),
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(20.0)),
+                            child: Center(
                               child: Text('Login',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Gilroy-Bold')),
-                            )
-                          ],
-                        ),
+                            )),
                       ),
-                    )
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Login()),
+                        );
+                      },
+                    ),
                   ],
                 )),
             SizedBox(height: 15.0),
             Center(
               child: Text(
                 'Read terms and privacy policy',
-                
                 style: TextStyle(
-                    fontFamily: 'Gilroy-Medium',
-                    color: Color(0xFF888888)
-                ),
+                    fontFamily: 'Gilroy-Medium', color: Color(0xFF888888)),
+              ),
+            )
+          ],
+        ));
+  }
+}
+
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.white,
+        resizeToAvoidBottomPadding: false,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+                //margin: const EdgeInsets.only(left: 10.0, right: 10.0,bottom: 10.0),
+                margin: const EdgeInsets.only(left: 110.0, top: 100.0),
+                width: 180.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: AssetImage("assets/logo2.png")),
+                )),
+            Container(
+              child: Center(
+                child: Text('Gdcoin',
+                    style: TextStyle(
+                        fontSize: 30.0,
+                        //fontWeight: FontWeight.bold,
+                        fontFamily: 'Gilroy-Bold')),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
+              child: Column(
+                children: <Widget>[
+//                  Row(
+//                    children: <Widget>[
+//                      Container(
+//                        child:
+//                      ),
+//                    ],
+//                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                        icon: Icon(
+                            Icons.email,
+                            color: Color(0xFFF29C1F),
+                        )
+                    ),
+                  ),
+                  SizedBox(height: 20.0),
+                  TextField(
+                    decoration: InputDecoration(
+                        icon: Icon(
+                            Icons.vpn_key,
+                            color: Color(0xFFF29C1F),
+                        )
+                    ),
+                    obscureText: true,
+                  ),
+                  SizedBox(height: 20.0),
+                  Row(
+                    children: <Widget>[
+                      Checkbox(
+                        activeColor: Color(0xFFF29C1F),
+                        value: false,
+                        onChanged: (bool value) {
+                          setState(() {
+
+                          });
+                        },
+                      ),
+                      Text("Keep me logged in.")
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Container(
+                padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      height: 40.0,
+                      child: Material(
+                        borderRadius: BorderRadius.circular(20.0),
+                        shadowColor: Colors.greenAccent,
+                        color: Color(0xFFF29C1F),
+                        elevation: 7.0,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Center(
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Gilroy-Bold'),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20.0),
+                  ],
+                )),
+            SizedBox(height: 15.0),
+            Center(
+              child: Text(
+                'Forgot Password?',
+                style: TextStyle(
+                    fontFamily: 'Gilroy-Medium', color: Color(0xFF888888)),
+              ),
+            ),
+            Center(
+              child: Text(
+                'Dont have an account yet? Register',
+                style: TextStyle(
+                    fontFamily: 'Gilroy-Medium', color: Color(0xFF888888)),
               ),
             )
           ],
