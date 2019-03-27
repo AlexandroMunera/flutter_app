@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sparkline/flutter_sparkline.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter/widgets.dart';
 
 void main() => runApp(MyApp());
 
@@ -260,6 +259,22 @@ class Dashboard extends StatefulWidget {
   _DashboardState createState() => _DashboardState();
 }
 
+class CustomIcons {
+  CustomIcons._();
+
+  static const _kFontFam = 'CustomIcons';
+
+  static const IconData opciones = const IconData(0xe800, fontFamily: _kFontFam);
+  static const IconData bitcoin = const IconData(0xe801, fontFamily: _kFontFam);
+  static const IconData ethereum = const IconData(0xe802, fontFamily: _kFontFam);
+  static const IconData litecoin = const IconData(0xe803, fontFamily: _kFontFam);
+  static const IconData wallet = const IconData(0xe804, fontFamily: _kFontFam);
+  static const IconData settings2 = const IconData(0xe806, fontFamily: _kFontFam);
+  static const IconData markets = const IconData(0xe807, fontFamily: _kFontFam);
+  static const IconData trades = const IconData(0xe808, fontFamily: _kFontFam);
+  static const IconData menuOptions = const IconData(0xe80d, fontFamily: _kFontFam);
+}
+
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
@@ -270,8 +285,8 @@ class _DashboardState extends State<Dashboard> {
           children: <Widget>[
             Container(
               margin: EdgeInsets.all(15),
-              child: Icon(
-                Icons.face,
+              child: new Icon(
+                CustomIcons.bitcoin,
                 size: 40,
                 color: Color(0xFFF29C1F),
               ),
@@ -282,7 +297,7 @@ class _DashboardState extends State<Dashboard> {
               child: Stack(
                 children: <Widget>[
                   Text(
-                    "Litecoin",
+                    "Bitcoin",
                     style: TextStyle(fontFamily: "Gilroy-Bold", fontSize: 18),
                   ),
                   Container(
@@ -328,8 +343,8 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
             ),
-            Icon(Icons.star),
-            Icon(Icons.settings),
+            Icon(Icons.star_border,color: Colors.grey),
+            Icon(CustomIcons.menuOptions,color: Colors.grey,),
           ],
         ),
         Row(
@@ -417,7 +432,7 @@ class _DashboardState extends State<Dashboard> {
             Container(
               margin: EdgeInsets.all(15),
               child: Icon(
-                Icons.account_circle,
+                CustomIcons.ethereum,
                 size: 40,
                 color: Color(0xFFF29C1F),
               ),
@@ -473,8 +488,8 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
             ),
-            Icon(Icons.star),
-            Icon(Icons.settings),
+            Icon(Icons.star_border,color: Colors.grey),
+            Icon(CustomIcons.menuOptions,color: Colors.grey,),
           ],
         ),
       ],
@@ -487,7 +502,7 @@ class _DashboardState extends State<Dashboard> {
             Container(
               margin: EdgeInsets.all(15),
               child: Icon(
-                Icons.face,
+                CustomIcons.litecoin,
                 size: 40,
                 color: Color(0xFFF29C1F),
               ),
@@ -544,8 +559,8 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
             ),
-            Icon(Icons.star),
-            Icon(Icons.settings),
+            Icon(Icons.star_border,color: Colors.grey),
+            Icon(CustomIcons.menuOptions,color: Colors.grey,),
           ],
         ),
       ],
@@ -654,19 +669,19 @@ class _DashboardState extends State<Dashboard> {
                   title: new Text("Home"),
                 ),
                 new BottomNavigationBarItem(
-                  icon: new Icon(Icons.equalizer),
+                  icon: new Icon(CustomIcons.markets,),
                   title: new Text("Markets"),
                 ),
                 new BottomNavigationBarItem(
-                  icon: new Icon(Icons.wallpaper),
+                  icon: new Icon(CustomIcons.wallet,),
                   title: new Text("Wallet"),
                 ),
                 new BottomNavigationBarItem(
-                  icon: new Icon(Icons.tablet),
+                  icon: new Icon(CustomIcons.trades,),
                   title: new Text("Trades"),
                 ),
                 new BottomNavigationBarItem(
-                  icon: new Icon(Icons.settings),
+                  icon: new Icon(CustomIcons.settings2,),
                   title: new Text("Settings"),
                 ),
               ],
