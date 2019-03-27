@@ -68,7 +68,7 @@ class _InitialPageState extends State<InitialPage> {
                       height: 50.0,
                       child: Material(
                         borderRadius: BorderRadius.circular(20.0),
-                        shadowColor: Colors.greenAccent,
+                        shadowColor: Color(0xFFF29C1F),
                         color: Color(0xFFF29C1F),
                         elevation: 7.0,
                         child: GestureDetector(
@@ -220,7 +220,7 @@ class _LoginState extends State<Login> {
                       height: 50.0,
                       child: Material(
                         borderRadius: BorderRadius.circular(20.0),
-                        shadowColor: Colors.greenAccent,
+                        shadowColor: Color(0xFFF29C1F),
                         color: Color(0xFFF29C1F),
                         elevation: 7.0,
                         child: GestureDetector(
@@ -268,14 +268,15 @@ class _LoginState extends State<Login> {
               child: Text(
                 'Forgot Password? \n',
                 style: TextStyle(
-                    fontFamily: 'Gilroy-Medium', color: Color(0xFF888888)),
+                    fontFamily: 'Gilroy-Medium', color: Color(0xFF888888),
+                fontSize: 16),
               ),
             ),
             Center(
               child: Text(
                 'Dont have an account yet? Register',
                 style: TextStyle(
-                    fontFamily: 'Gilroy-Medium', color: Color(0xFF888888)),
+                    fontFamily: 'Gilroy-Medium', color: Color(0xFF888888),fontSize: 16),
               ),
             )
           ],
@@ -358,12 +359,12 @@ class _DashboardState extends State<Dashboard> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          "\$3,490.79   ",
+                          "\$3,490.79 ",
                           style: TextStyle(
                               fontFamily: "Gilroy-Bold", fontSize: 15),
                         ),
                         Text(
-                          "↓0.00730992 ",
+                          "↓ 20.1304 ",
                           style: TextStyle(
                               fontFamily: "Gilroy-Bold",
                               fontSize: 15,
@@ -433,11 +434,27 @@ class _DashboardState extends State<Dashboard> {
               margin: EdgeInsets.only(left: 20),
               decoration: BoxDecoration(
                 color: Color(0xFFF29C1F),
-                borderRadius: BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(8.0),
               ),
-              child: Text(
-                "  7d  ",
-                style: TextStyle(color: Colors.white),
+              child:                           Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(60.0),
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                    stops: [0.1, 0.5, 0.7, 0.9],
+                    colors: [
+                      Color(0xFFE5C900),
+                      Color(0xFFE8BB09),
+                      Color(0xFFEEA915),
+                      Color(0xFFF29C1F),
+                    ],
+                  ),
+                ),
+                child: Text(
+                  "  7d  ",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
             Container(
@@ -507,13 +524,14 @@ class _DashboardState extends State<Dashboard> {
                           "↓ 0.026441 ",
                           style: TextStyle(
                               fontFamily: "Gilroy-Bold",
+
                               fontSize: 15,
                               color: Colors.red),
                         ),
                         Container(
                           decoration: BoxDecoration(color: Colors.red),
                           child: Text(
-                            "-0.02%",
+                            " -0.02%  ",
                             style: TextStyle(
                                 fontFamily: "Gilroy-Bold",
                                 fontSize: 13,
@@ -587,7 +605,7 @@ class _DashboardState extends State<Dashboard> {
                           margin: EdgeInsets.only(left: 10),
                           decoration: BoxDecoration(color: Colors.red),
                           child: Text(
-                            "-0.02%",
+                            " -0.02%  ",
                             style: TextStyle(
                                 fontFamily: "Gilroy-Bold",
                                 fontSize: 13,
