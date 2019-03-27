@@ -65,7 +65,7 @@ class _InitialPageState extends State<InitialPage> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: 40.0,
+                      height: 50.0,
                       child: Material(
                         borderRadius: BorderRadius.circular(20.0),
                         shadowColor: Colors.greenAccent,
@@ -73,13 +73,30 @@ class _InitialPageState extends State<InitialPage> {
                         elevation: 7.0,
                         child: GestureDetector(
                           onTap: () {},
-                          child: Center(
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Gilroy-Bold'),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomLeft,
+                                end: Alignment.topRight,
+                                stops: [0.1, 0.5, 0.7, 0.9],
+                                colors: [
+                                  Color(0xFFE5C900),
+                                  Color(0xFFE8BB09),
+                                  Color(0xFFEEA915),
+                                  Color(0xFFF29C1F),
+                                ],
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Register',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Gilroy-Bold',
+                                    fontSize: 18),
+                              ),
                             ),
                           ),
                         ),
@@ -88,7 +105,7 @@ class _InitialPageState extends State<InitialPage> {
                     SizedBox(height: 20.0),
                     GestureDetector(
                       child: Container(
-                        height: 40.0,
+                        height: 50.0,
                         color: Colors.transparent,
                         child: Container(
                             decoration: BoxDecoration(
@@ -101,8 +118,8 @@ class _InitialPageState extends State<InitialPage> {
                             child: Center(
                               child: Text('Login',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Gilroy-Bold')),
+                                      fontFamily: 'Gilroy-Bold',
+                                  fontSize: 18)),
                             )),
                       ),
                       onTap: () {
@@ -162,13 +179,6 @@ class _LoginState extends State<Login> {
               padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
               child: Column(
                 children: <Widget>[
-//                  Row(
-//                    children: <Widget>[
-//                      Container(
-//                        child:
-//                      ),
-//                    ],
-//                  ),
                   TextField(
                     decoration: InputDecoration(
                         icon: Icon(
@@ -180,7 +190,7 @@ class _LoginState extends State<Login> {
                   TextField(
                     decoration: InputDecoration(
                         icon: Icon(
-                      Icons.vpn_key,
+                      CustomIcons.keyPass,
                       color: Color(0xFFF29C1F),
                     )),
                     obscureText: true,
@@ -189,6 +199,7 @@ class _LoginState extends State<Login> {
                   Row(
                     children: <Widget>[
                       Checkbox(
+                        checkColor: Color(0xFFF29C1F),
                         activeColor: Color(0xFFF29C1F),
                         value: false,
                         onChanged: (bool value) {
@@ -206,7 +217,7 @@ class _LoginState extends State<Login> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: 40.0,
+                      height: 50.0,
                       child: Material(
                         borderRadius: BorderRadius.circular(20.0),
                         shadowColor: Colors.greenAccent,
@@ -219,13 +230,31 @@ class _LoginState extends State<Login> {
                                 MaterialPageRoute(
                                     builder: (context) => Dashboard()));
                           },
-                          child: Center(
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Gilroy-Bold'),
+                          child:
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomLeft,
+                                end: Alignment.topRight,
+                                stops: [0.1, 0.5, 0.7, 0.9],
+                                colors: [
+                                  Color(0xFFE5C900),
+                                  Color(0xFFE8BB09),
+                                  Color(0xFFEEA915),
+                                  Color(0xFFF29C1F),
+                                ],
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Gilroy-Bold',
+                                    fontSize: 20),
+                              ),
                             ),
                           ),
                         ),
@@ -237,7 +266,7 @@ class _LoginState extends State<Login> {
             SizedBox(height: 15.0),
             Center(
               child: Text(
-                'Forgot Password?',
+                'Forgot Password? \n',
                 style: TextStyle(
                     fontFamily: 'Gilroy-Medium', color: Color(0xFF888888)),
               ),
@@ -273,11 +302,35 @@ class CustomIcons {
   static const IconData markets = const IconData(0xe807, fontFamily: _kFontFam);
   static const IconData trades = const IconData(0xe808, fontFamily: _kFontFam);
   static const IconData menuOptions = const IconData(0xe80d, fontFamily: _kFontFam);
+  static const IconData keyPass = const IconData(0xe80e, fontFamily: _kFontFam);
 }
 
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
+    final search = Container(
+      width: 350,
+      height: 30,
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(20)),
+      //margin: EdgeInsets.only(left: 20),
+      child: Row(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(left: 20, right: 20),
+            child: Icon(
+              Icons.search,
+              size: 30,
+              color: Colors.grey,
+            ),
+          ),
+          Text(
+            'Search for anything..',
+            style: TextStyle(fontSize: 15, color: Colors.grey),
+          )
+        ],
+      ),
+    );
 
     final item1 = Column(
       children: <Widget>[
@@ -305,12 +358,12 @@ class _DashboardState extends State<Dashboard> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          "\$3,490.79    ",
+                          "\$3,490.79   ",
                           style: TextStyle(
                               fontFamily: "Gilroy-Bold", fontSize: 15),
                         ),
                         Text(
-                          "0.00730992 ",
+                          "↓0.00730992 ",
                           style: TextStyle(
                               fontFamily: "Gilroy-Bold",
                               fontSize: 15,
@@ -343,8 +396,11 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
             ),
-            Icon(Icons.star_border,color: Colors.grey),
-            Icon(CustomIcons.menuOptions,color: Colors.grey,),
+            Icon(Icons.star_border, color: Colors.grey),
+            Icon(
+              CustomIcons.menuOptions,
+              color: Colors.grey,
+            ),
           ],
         ),
         Row(
@@ -360,68 +416,60 @@ class _DashboardState extends State<Dashboard> {
           ],
         ),
         Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                child: Text("Trend for last:"),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(left: 20),
+              child: Text("Trend for last:"),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20),
+              child: Text(
+                "1d",
+                style: TextStyle(color: Colors.grey),
               ),
-              Container(
-
-                margin: EdgeInsets.only(left: 20),
-                child: Text("1d",
-                  style: TextStyle(
-                      color: Colors.grey
-                  ),
-                ),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20),
+              decoration: BoxDecoration(
+                color: Color(0xFFF29C1F),
+                borderRadius: BorderRadius.circular(5.0),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                decoration: BoxDecoration(color: Color(0xFFF29C1F),
-                borderRadius: BorderRadius.circular(5.0),),
-                child: Text(
-                    "  7d  ",
-                  style: TextStyle(
-                    color: Colors.white
-                  ),
-                ),
+              child: Text(
+                "  7d  ",
+                style: TextStyle(color: Colors.white),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                child: Text("1m",
-                  style: TextStyle(
-                      color: Colors.grey
-                  ),
-                ),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20),
+              child: Text(
+                "1m",
+                style: TextStyle(color: Colors.grey),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                child: Text("3m",
-                  style: TextStyle(
-                      color: Colors.grey
-                  ),
-                ),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20),
+              child: Text(
+                "3m",
+                style: TextStyle(color: Colors.grey),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                child: Text("1y",
-                  style: TextStyle(
-                      color: Colors.grey
-                  ),
-                ),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20),
+              child: Text(
+                "1y",
+                style: TextStyle(color: Colors.grey),
               ),
-              Container(
-                margin: EdgeInsets.only(left: 20),
-
-                child: Text("YTD",
-                  style: TextStyle(
-                      color: Colors.grey
-                  ),
-                ),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 20),
+              child: Text(
+                "YTD",
+                style: TextStyle(color: Colors.grey),
               ),
-            ],
-          ),
-
+            ),
+          ],
+        ),
       ],
     );
 
@@ -456,7 +504,7 @@ class _DashboardState extends State<Dashboard> {
                               fontFamily: "Gilroy-Bold", fontSize: 15),
                         ),
                         Text(
-                          "0.026441 ",
+                          "↓ 0.026441 ",
                           style: TextStyle(
                               fontFamily: "Gilroy-Bold",
                               fontSize: 15,
@@ -488,8 +536,11 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
             ),
-            Icon(Icons.star_border,color: Colors.grey),
-            Icon(CustomIcons.menuOptions,color: Colors.grey,),
+            Icon(Icons.star_border, color: Colors.grey),
+            Icon(
+              CustomIcons.menuOptions,
+              color: Colors.grey,
+            ),
           ],
         ),
       ],
@@ -521,12 +572,12 @@ class _DashboardState extends State<Dashboard> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          "\$25.49 ",
+                          "\$25.49  ",
                           style: TextStyle(
                               fontFamily: "Gilroy-Bold", fontSize: 15),
                         ),
                         Text(
-                          "0.00730992 ",
+                          "↓ 0.00730992 ",
                           style: TextStyle(
                               fontFamily: "Gilroy-Bold",
                               fontSize: 15,
@@ -559,8 +610,11 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
             ),
-            Icon(Icons.star_border,color: Colors.grey),
-            Icon(CustomIcons.menuOptions,color: Colors.grey,),
+            Icon(Icons.star_border, color: Colors.grey),
+            Icon(
+              CustomIcons.menuOptions,
+              color: Colors.grey,
+            ),
           ],
         ),
       ],
@@ -579,7 +633,7 @@ class _DashboardState extends State<Dashboard> {
                   borderRadius: BorderRadius.circular(10.0),
                   shadowColor: Colors.blueGrey,
                   color: Colors.white,
-                  elevation: 7.0,
+                  elevation: 4.0,
                   child: item1),
             ),
             Container(
@@ -590,7 +644,7 @@ class _DashboardState extends State<Dashboard> {
                   borderRadius: BorderRadius.circular(10.0),
                   shadowColor: Colors.blueGrey,
                   color: Colors.white,
-                  elevation: 7.0,
+                  elevation: 4.0,
                   child: item2),
             ),
             Container(
@@ -601,91 +655,88 @@ class _DashboardState extends State<Dashboard> {
                   borderRadius: BorderRadius.circular(10.0),
                   shadowColor: Colors.blueGrey,
                   color: Colors.white,
-                  elevation: 7.0,
+                  elevation: 4.0,
                   child: item3),
             ),
           ],
         ));
 
-    return MaterialApp(
+    return new MaterialApp(
       theme: ThemeData(
-//        primaryColor: Colors.white,
-          primaryColor: Color(0xFFF29C1F),
+        primaryColor: Color(0xFFF29C1F),
       ),
-      home: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            bottom: TabBar(
-              tabs: [
-                Tab(text: "Current Rates"),
-                Tab(text: "Projections"),
-              ],
-            ),
-            title: Container(
-              width: 350,
-              height: 30,
-              decoration: BoxDecoration(color: Colors.white,
-              borderRadius: BorderRadius.circular(20)),
-              //margin: EdgeInsets.only(left: 20),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(left: 20,right: 20),
-                    child: Icon(
-                      Icons.search,
-                      size: 30,
-                      color: Colors.grey,
-                    ),
+      home: new Scaffold(
+        appBar: new AppBar(
+          title: search,
+        ),
+        body: new DefaultTabController(
+          length: 3,
+          child: new Column(
+            children: <Widget>[
+              new Container(
+                constraints: BoxConstraints(maxHeight: 150.0),
+                child: new Material(
+                  color: Colors.white,
+                  child: new TabBar(
+                    indicatorColor: Color(0xFFF29C1F),
+                    tabs: [
+                      Tab(text: "Current Rates"),
+                      Tab(text: "Projections"),
+                    ],
                   ),
-                  Text('Search for anything..',
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.grey
-                    ),)
-                ],
-              ) ,
-            ),
+                ),
+              ),
+              new Expanded(
+                child: new TabBarView(
+                  children: [currentRatesView, Text("Projections Items")],
+                ),
+              ),
+            ],
           ),
-          body: TabBarView(
-            children: [currentRatesView, Text("Projections Items")],
-          ),
-          bottomNavigationBar: new Theme(
-            data: Theme.of(context).copyWith(
-                // sets the background color of the `BottomNavigationBar`
-                canvasColor: Colors.white,
-                // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-                primaryColor: Colors.orangeAccent,
-                textTheme: Theme.of(context).textTheme.copyWith(
-                    caption: new TextStyle(
-                        color: Colors
-                            .grey))), // sets the inactive color of the `BottomNavigationBar`
-            child: new BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              currentIndex: 0,
-              items: [
-                new BottomNavigationBarItem(
-                  icon: new Icon(Icons.border_all),
-                  title: new Text("Home"),
+        ),
+        bottomNavigationBar: new Theme(
+          data: Theme.of(context).copyWith(
+              // sets the background color of the `BottomNavigationBar`
+              canvasColor: Colors.white,
+              // sets the active color of the `BottomNavigationBar` if `Brightness` is light
+              primaryColor: Colors.orangeAccent,
+              textTheme: Theme.of(context).textTheme.copyWith(
+                  caption: new TextStyle(
+                      color: Colors
+                          .grey))), // sets the inactive color of the `BottomNavigationBar`
+          child: new BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: 0,
+            items: [
+              new BottomNavigationBarItem(
+                icon: new Icon(Icons.border_all),
+                title: new Text("Home"),
+              ),
+              new BottomNavigationBarItem(
+                icon: new Icon(
+                  CustomIcons.markets,
                 ),
-                new BottomNavigationBarItem(
-                  icon: new Icon(CustomIcons.markets,),
-                  title: new Text("Markets"),
+                title: new Text("Markets"),
+              ),
+              new BottomNavigationBarItem(
+                icon: new Icon(
+                  CustomIcons.wallet,
                 ),
-                new BottomNavigationBarItem(
-                  icon: new Icon(CustomIcons.wallet,),
-                  title: new Text("Wallet"),
+                title: new Text("Wallet"),
+              ),
+              new BottomNavigationBarItem(
+                icon: new Icon(
+                  CustomIcons.trades,
                 ),
-                new BottomNavigationBarItem(
-                  icon: new Icon(CustomIcons.trades,),
-                  title: new Text("Trades"),
+                title: new Text("Trades"),
+              ),
+              new BottomNavigationBarItem(
+                icon: new Icon(
+                  CustomIcons.settings2,
                 ),
-                new BottomNavigationBarItem(
-                  icon: new Icon(CustomIcons.settings2,),
-                  title: new Text("Settings"),
-                ),
-              ],
-            ),
+                title: new Text("Settings"),
+              ),
+            ],
           ),
         ),
       ),
